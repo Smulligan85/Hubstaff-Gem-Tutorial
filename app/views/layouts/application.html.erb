@@ -7,6 +7,40 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Hubstaff Gem Tutorial</a>
+        <ul class="nav navbar-nav">
+          <% if current_user %>
+            <li><%= link_to "Log Out", logout_path %></li>
+            <a href="#"><button type="button" class="btn btn-success navbar-btn">Connect to Hubstaff</button></a>
+          <% else %>
+            <li><%= link_to "Sign Up", signup_path %></li>
+            <li><%= link_to "Sign In", login_path%></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:notice] %>
+    </div>
+  <% elsif flash[:error] %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:error] %>
+    </div>
+  <% elsif flash[:alert] %>
+    <div class="alert alert-warning">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
   <%= yield %>
 
 </body>
