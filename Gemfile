@@ -27,6 +27,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Use Hubstaff-Ruby gem
+gem 'hubstaff-ruby', '~> 0.0.1'
+
+# Use dotenv gem
+gem 'dotenv', '~> 2.1'
+gem 'pry'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

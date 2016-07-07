@@ -10,15 +10,21 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/">Hubstaff Gem Tutorial</a>
+        <% if current_user %>
+          <%= link_to "Hubstaff Gem Tutorial", user_path(current_user), class: "navbar-brand" %>
+        <% else %>
+          <%= link_to "Hubstaff Gem Tutorial", root_path, class: "navbar-brand" %>
+        <% end %>
         <ul class="nav navbar-nav">
           <% if current_user %>
             <li><%= link_to "Log Out", logout_path %></li>
-            <a href="#"><button type="button" class="btn btn-success navbar-btn">Connect to Hubstaff</button></a>
           <% else %>
             <li><%= link_to "Sign Up", signup_path %></li>
             <li><%= link_to "Sign In", login_path%></li>
           <% end %>
+          <% if current_user && current_user.client.nil? %>
+            <button class="btn btn-success navbar-btn"><%= link_to "Connect to Hubstaff", client_path("#{current_user.id}") %></button>
+            <% end %>
         </ul>
       </div>
     </div>
