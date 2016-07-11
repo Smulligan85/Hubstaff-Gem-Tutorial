@@ -1,29 +1,80 @@
 <h1>Welcome <%= @user.email %></h1>
 
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Create a custom Hubstaff team report
-</button>
+<% if @user.client %>
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#reportModal">
+    Create a custom Hubstaff team report
+  </button>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Create a Custom Team Report by Date</h4>
-      </div>
-      <div class="modal-body">
-        <%= form_tag(controller: "users", action: "custom_report", method: "post") do %>
-          <%= label_tag "Start Date" %>
-          <%= text_field_tag :start_date, nil, placeholder: "2016-05-23" %>
-          <%= label_tag "End Date" %>
-          <%= text_field_tag :end_date, nil, placeholder: "2016-05-23" %>
-      </div>
-      <div class="modal-footer">
-          <%= submit_tag "Create Report" %>
-        <% end %>
+  <!-- Modal -->
+  <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Create a Custom Team Report by Date</h4>
+        </div>
+        <div class="modal-body">
+          <%= form_tag(controller: "users", action: "custom_report", method: "post") do %>
+            <%= label_tag "Start Date" %>
+            <%= text_field_tag :start_date, nil, placeholder: "2016-05-23" %>
+            <%= label_tag "End Date" %>
+            <%= text_field_tag :end_date, nil, placeholder: "2016-05-23" %><br>
+            <%= label_tag "Organizations"%><br>
+            <%= text_field_tag :orgs, nil, size: 40, placeholder: "List of organization IDs (comma separated)" %><br>
+            <%= label_tag "Projects"%><br>
+            <%= text_field_tag :projects, nil, size: 40, placeholder: "List of project IDs (comma separated)" %><br>
+            <%= label_tag "Users"%><br>
+            <%= text_field_tag :users, nil, size: 40, placeholder: "List of users IDs (comma separated)" %><br>
+            <%= label_tag "Show Tasks"%><br>
+            <%= select_tag :show_tasks, options_for_select([false, true])%><br>
+            <%= label_tag "Show Notes"%><br>
+            <%= select_tag :show_notes, options_for_select([false, true])%><br>
+            <%= label_tag "Show Activities"%><br>
+            <%= select_tag :show_activity, options_for_select([false, true])%><br>
+            <%= label_tag "Include Archieved"%><br>
+            <%= select_tag :include_archieved, options_for_select([false, true])%><br>
+        </div>
+        <div class="modal-footer">
+            <%= submit_tag "Create Report" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#screenModal">
+    Retrieve Screenshots From Your Hubstaff Account
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="screenModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Retrieve Screenshots</h4>
+        </div>
+        <div class="modal-body">
+          <%= form_tag(controller: "users", action: "screenshots", method: "post") do %>
+            <%= label_tag "Start Time" %>
+            <%= text_field_tag :start_time, nil, placeholder: "2016-05-22" %>
+            <%= label_tag "Stop Time"%>
+            <%= text_field_tag :stop_time, nil, placeholder: "2016-05-24" %><br>
+            <%= label_tag "You must choose at least one Organization, Project or User" %><br>
+            <%= label_tag "Organizations"%><br>
+            <%= text_field_tag :orgs, nil, size: 40, placeholder: "List of organization IDs (comma separated)" %><br>
+            <%= label_tag "Projects"%><br>
+            <%= text_field_tag :projects, nil, size: 40, placeholder: "List of project IDs (comma separated)" %><br>
+            <%= label_tag "Users"%><br>
+            <%= text_field_tag :users, nil, size: 40, placeholder: "List of users IDs (comma separated)" %><br>
+            <%= label_tag "Offset"%><br>
+            <%= text_field_tag :offset, nil, placeholder: "Index of the first record returned (starts at 0)", value: 0 %><br>
+        </div>
+        <div class="modal-footer">
+            <%= submit_tag "Retrieve Screenshots" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

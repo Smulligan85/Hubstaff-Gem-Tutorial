@@ -39,7 +39,25 @@ class UsersController < ApplicationController
 
   def custom_report
     user = current_user
-    @report = user.client.custom_date_team(params[:start_date], params[:end_date])
+    options = {}
+    options[:orgs] = params[:orgs] unless params[:orgs] == ""
+    options[:projects] = params[:projects] unless params[:projects] == ""
+    options[:users] = params[:users] unless params[:users] = ""
+    options[:show_tasks] = params[:show_tasks]
+    options[:show_notes] = params[:show_notes]
+    options[:show_activity] = params[:show_activity]
+    options[:include_archieved] = params[:include_archieved]
+    @report = user.client.custom_date_team(params[:start_date], params[:end_date], options)
+  end
+
+  def screenshots
+    user = current_user
+    options = {}
+    options[:orgs] = params[:orgs] unless params[:orgs] == ""
+    options[:projects] = params[:projects] unless params[:projects] == ""
+    options[:users] = params[:users] unless params[:users] == ""
+    options[:offset] = params[:offset]
+    @screenshots = user.client.screenshots(params[:start_time], params[:stop_time], options)
   end
 
   private

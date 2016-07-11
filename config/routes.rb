@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   get 'users/:id/hubstaff', to: 'users#client', as: 'client'
   post '/auth_client', to: 'users#auth_client'
-  post '/custom_report', to: 'users#custom_report', as: 'custom_report'
+  post '/custom_report', to: 'users#custom_report'
+  post '/screenshots', to: 'users#screenshots'
 
   resources :users
   resources :sessions
