@@ -5,7 +5,7 @@
     Create a custom Hubstaff team report
   </button>
 
-  <!-- Modal -->
+  <!-- Custom Report Modal -->
   <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -14,7 +14,7 @@
           <h4 class="modal-title" id="myModalLabel">Create a Custom Team Report by Date</h4>
         </div>
         <div class="modal-body">
-          <%= form_tag(controller: "users", action: "custom_report", method: "post") do %>
+          <%= form_tag(controller: "users", action: "get_custom_report", method: "post") do %>
             <%= label_tag "Start Date" %>
             <%= text_field_tag :start_date, nil, placeholder: "2016-05-23" %>
             <%= label_tag "End Date" %>
@@ -46,7 +46,7 @@
     Retrieve Screenshots From Your Hubstaff Account
   </button>
 
-  <!-- Modal -->
+  <!-- Screenshot Modal -->
   <div class="modal fade" id="screenModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -55,7 +55,7 @@
           <h4 class="modal-title" id="myModalLabel">Retrieve Screenshots</h4>
         </div>
         <div class="modal-body">
-          <%= form_tag(controller: "users", action: "screenshots", method: "post") do %>
+          <%= form_tag(controller: "users", action: "get_screenshots", method: "post") do %>
             <%= label_tag "Start Time" %>
             <%= text_field_tag :start_time, nil, placeholder: "2016-05-22" %>
             <%= label_tag "Stop Time"%>

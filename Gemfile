@@ -32,7 +32,7 @@ gem 'hubstaff-ruby', '~> 0.0.1'
 
 # Use dotenv gem
 gem 'dotenv', '~> 2.1'
-gem 'pry'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
