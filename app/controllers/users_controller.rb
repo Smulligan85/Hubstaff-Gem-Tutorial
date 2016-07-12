@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def custom_report
+  def get_custom_report
     user = current_user
     options = {}
     options[:orgs] = params[:orgs] unless params[:orgs] == ""
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     @report = user.client.custom_date_team(params[:start_date], params[:end_date], options)
   end
 
-  def screenshots
+  def get_screenshots
     user = current_user
     options = {}
     options[:orgs] = params[:orgs] unless params[:orgs] == ""
