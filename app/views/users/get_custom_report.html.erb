@@ -1,0 +1,12 @@
+<% @report["organizations"].each do |org| %>
+  <h1>Organization Name: <%= org["name"] %></h1>
+  <% org["dates"].each do |date| %>
+    <h2>Date: <%= date["date"] %></h2>
+    <% date["users"].each do |user| %>
+      <h3>User: <%= user["name"] %></h3>
+        <% user["projects"].each do |project| %>
+          <h1>Project: <%= project["name"] %></h1>
+        <% end %>
+    <% end %>
+  <% end %>
+<% end %>
